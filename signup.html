@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <img class="cloud" src="cloud.png" alt="" />
+    <img class="cloud2" src="cloud.png" alt="" />
+
+    <div class="container">
+      <div class="logo">
+        <img src="clothes-shirt-svgrepo-com.svg" alt="clothes" />
+        <div>
+          <h2>Binco</h2>
+          <p>Apparel Inventory Management</p>
+        </div>
+      </div>
+
+      <form id="signupForm">
+        <h2>Signup as Employee</h2>
+        <div class="fields">
+          <label for="signupEmail">Email:</label>
+          <input type="email" id="signupEmail" name="email" required />
+          <label for="signupPass">Password:</label>
+          <input type="password" id="signupPass" name="pass" required />
+          <button type="submit" class="submit-btn">Signup</button>
+        </div>
+        <p class="signup-link">
+          Already have an account? <a href="login.html">Login</a>
+        </p>
+      </form>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="form-popup" id="message">
+      <div class="modal-content">
+        <h2>Message</h2>
+        <p id="message-txt"></p>
+        <button onclick="closeModal()" class="submit-btn">Close</button>
+      </div>
+    </div>
+
+    <script>
+      const signupForm = document.getElementById("signupForm");
+      const overlay = document.getElementById("overlay");
+      const messageModal = document.getElementById("message");
+      const messageText = document.getElementById("message-txt");
+
+      signupForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const formData = new FormData(signupForm);
+
+        fetch("process_signup.php", {
+          method: "POST",
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              window.location.href = "login.html";
+            } else {
+              messageText.textContent = data.message || "Signup failed";
+              overlay.style.display = "block";
+              messageModal.style.display = "block";
+            }
+          })
+          .catch(() => {
+            messageText.textContent = "An unexpected error occurred.";
+            overlay.style.display = "block";
+            messageModal.style.display = "block";
+          });
+      });
+
+      function closeModal() {
+        overlay.style.display = "none";
+        messageModal.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
