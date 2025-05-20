@@ -8,7 +8,8 @@
   --primary-hover: #008e77;
 
   --success: #43a047;
-  --warning: #ffc107;
+  --warning: #f0ba1a;
+  --warning-focus: #9b7400;
   --error: #e53935;
   --error-focus: #c23331;
   --orange: #fe6361;
@@ -48,19 +49,29 @@ h1 {
   text-decoration: none;
 }
 
-button {
+button,
+.btn a {
   font-size: 0.9rem;
   padding: 8px 16px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   margin-right: 8px;
+  font-weight: 600;
   border: 2px solid var(--text-primary);
+  color: var(--surface-alt);
+}
+
+.btn a {
+  background-color: var(--warning);
+}
+
+.btn a:hover {
+  background-color: var(--warning-focus);
 }
 
 button.primary {
   background: var(--primary);
-  color: #fff;
 }
 
 button.primary:hover {
@@ -68,11 +79,19 @@ button.primary:hover {
 }
 
 button.secondary {
-  background-color: var(--error);
-  color: #fff;
+  background-color: var(--warning);
+  color: var(--text-primary);
 }
 
 button.secondary:hover {
+  background: var(--warning-focus);
+}
+
+button.error {
+  background: var(--error);
+}
+
+button.error:hover {
   background: var(--error-focus);
 }
 
@@ -157,7 +176,7 @@ tbody tr:hover {
   border: 2px solid var(--text-primary);
 }
 
-.error {
+.error-txt {
   color: var(--error);
   font-weight: 600;
 }
