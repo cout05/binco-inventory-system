@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2025 at 11:16 AM
+-- Generation Time: May 20, 2025 at 05:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,19 +30,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `items` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT 1
+  `size` varchar(255) NOT NULL DEFAULT 'sm',
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `quantity`) VALUES
-(6, 'Men\'s T-shirt', 100),
-(9, 'Men\'s Short', 2),
-(10, 'Men\'s Jacket', 5),
-(11, 'Men\'s Underwear', 123),
-(12, 'Men\'s Cap', 12);
+INSERT INTO `items` (`id`, `name`, `size`, `quantity`, `status`) VALUES
+(6, 'Men\'s T-shirt', 'XL', 20, 0),
+(9, 'Men\'s Short', 'M', 2, 0),
+(10, 'Men\'s Jacket', 'L', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -89,7 +89,7 @@ ALTER TABLE `user_account`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user_account`
